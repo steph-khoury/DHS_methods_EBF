@@ -1,0 +1,19 @@
+# Restricted DHS microdata (DHS terms of use) — never commit
+data/restricted/*
+!data/restricted/.gitkeep
+*.dta
+!results/*.dta
+
+# Generated outputs inside the analysis folder (copy final tables into results/ instead)
+02_analysis/EBF_methods_outputs/
+02_analysis/*.xlsx
+*.rds
+
+# R / RStudio / Stata / OS files
+.Rhistory
+.RData
+.Rproj.user/
+*.log
+*.smcl
+.DS_Store
+Thumbs.db
