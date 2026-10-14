@@ -1782,6 +1782,26 @@ replace EBF_DHS=. if BF==.
 replace EBF_DHS=0 if food==1 
 replace EBF_DHS=0 if liquid==1
 
+*EBF_DHS_p: DHS definition plus prelacteal feeding. If food or liquid was given to the child, they were categorized as not exclusively breastfeeding. If both food and liquid are missing they were categorized as exclusively breastfeeding. If prelacteal is missing, they will be categorized as exclusively breastfeeding.
+gen EBF_DHS_p=1
+replace EBF_DHS_p=0 if BF==0
+replace EBF_DHS_p=. if BF==.
+replace EBF_DHS_p=0 if BF==0 & food==1 | liquid==1
+replace EBF_DHS_p=1 if BF==1 & food==. & liquid==.
+replace EBF_DHS_p=0 if food==1
+replace EBF_DHS_p=0 if liquid==1
+replace EBF_DHS_p=0 if prelacteal==1
+
+*EBF_strict: UNICEF/WHO definition - any missing food or liquid means no EBF
+gen EBF_strict=1
+replace EBF_strict=0 if BF==0
+replace EBF_strict=. if BF==. 
+replace EBF_strict=0 if BF==1 & food==0 & liquid==.
+replace EBF_strict=0 if BF==1 & food==. & liquid==0
+replace EBF_strict=0 if BF==1 & food==. & liquid==.
+replace EBF_strict=0 if food==1
+replace EBF_strict=0 if liquid==1
+
 ************************************************
 
 **** for weighted measurements:  [aweight= v005]
